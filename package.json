@@ -19,8 +19,12 @@
     "@angular/platform-browser": "~11.0.3",
     "@angular/platform-browser-dynamic": "~11.0.3",
     "@angular/router": "~11.0.3",
+    "ngx-doc-viewer": "^2.0.2",
+    "pdf2pic": "^2.1.4",
+    "pdfjs": "^2.4.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
+    "viewerjs": "^1.9.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
@@ -41,5 +45,8 @@
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~4.0.2"
-  }
+  },
+  "browser":{
+    "child_process": false
+    }  
 }
