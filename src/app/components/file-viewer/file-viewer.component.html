@@ -3,7 +3,7 @@
   style="z-index: 2015;">
 
   <!-- viewer -->
-  <div class="viewer-canvas" data-viewer-action="hide"><img [src]="arq_atual.Source" alt="arq_atual.SourceName"
+  <div class="viewer-canvas" data-viewer-action="hide"><img [src]="arq_atual.Obj.Source" [alt]="arq_atual.Obj.SourceName"
       class="viewer-move viewer-transition"
       style="height: 746.1px; margin-left: 374.659px; margin-top: 41.45px; position: absolute; width: 419.681px; max-width: none !important; transform: none;">
   </div>
@@ -11,13 +11,13 @@
 
   <!-- footer -->
   <div class="viewer-footer">
-    <div class="viewer-title" id="viewerTitle0">{{arq_atual.SourceName}}</div>
+    <div class="viewer-title" [id]="arq_atual.Id">{{arq_atual.Obj.SourceName}}</div>
 
     <!-- button list -->
     <div class="viewer-toolbar">
       <ul>
 
-        <li *ngFor="let btn of lstBtn" tabindex="0" [id]="btn.HTML_id" role="button" [class]="btn.ButtonClass" [style]="btn.ButtonStyle" (click)="btn.OnClick" data-viewer-action=""></li>
+        <li *ngFor="let btn of lst_buttons" [tabindex]="btn.Id" [id]="btn.Obj.HTML_id" role="button" [class]="btn.Obj.ButtonClass" [style]="btn.Obj.ButtonStyle" (click)="f_redirect(btn.Obj.OnClick);" data-viewer-action=""></li>
 
         <!-- 
         <li tabindex="0" role="button" class="viewer-zoom-in" data-viewer-action="zoom-in"></li>
@@ -39,8 +39,8 @@
     <div class="viewer-navbar">
       <ul class="viewer-list viewer-transition" role="navigation" style="width: 279px; transform: translateX(414.5px);">
 
-        <li *ngFor="let arq of lstArquivos, i = index" data-index="i" data-viewer-action="view" role="button" tabindex="i">
-          <img [src]="arq.Source" alt="arq.SourceName" data-original-url="arq.Source" data-filled="true" style="width: 50px; height: 50px; transform: translateX(-10px);">
+        <li *ngFor="let arq of lst_arquivo" [data-index]="arq.Id" data-viewer-action="view" role="button" [tabindex]="arq.Id">
+          <img [src]="arq.Obj.Source" [alt]="arq.Obj.SourceName" [data-original-url]="arq.Obj.Source" data-filled="true" style="width: 50px; height: 50px; transform: translateX(-10px);">
         </li>
 
 
