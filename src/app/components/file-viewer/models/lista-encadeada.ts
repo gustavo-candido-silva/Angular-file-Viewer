@@ -52,13 +52,13 @@ export class ListaEncadeada {
         }
     }
 
-    GetProxId(){
+    private GetProxId(){
 
         if(this.nodeList.length == 0){
             return 0;
         }else{
 
-            let ultIndex = this.nodeList.length;
+            let ultIndex = this.nodeList.length-1;
 
             return this.nodeList[ultIndex].IdNode+1;
 
@@ -66,7 +66,7 @@ export class ListaEncadeada {
 
     }
 
-    GetConteudoById(Id:number){
+    private GetNodeById(Id:number){
 
         let nodeFilter = this.nodeList.filter(x=>{
             if(x.IdNode == Id)
@@ -79,7 +79,7 @@ export class ListaEncadeada {
 
     }
 
-    GetIdByConteudo(obj:any){
+    private GetNodeByConteudo(obj:any){
 
         let nodeFilter = this.nodeList.filter(x=>{
             if(JSON.stringify(x.objeto) == JSON.stringify(obj))
@@ -88,11 +88,29 @@ export class ListaEncadeada {
                 return false;
         });
 
-        return nodeFilter[0].IdNode;
+        return nodeFilter[0];
+
+    }
+
+    GetProxConteudo(obj:any){
+
+        let node = this.GetNodeByConteudo(obj);
+
+        return {Id:node.nodeProximo.IdNode, Obj:node.nodeProximo.objeto};
+
+    }
+
+    GetAntConteudo(obj:any){
+
+        let node = this.GetNodeByConteudo(obj);
+
+        return {Id:node.nodeAnterior.IdNode, Obj:node.nodeAnterior.objeto};
 
     }
 
     RemoveNode(Id:number){
+
+        let nodeReturn;
 
         let nodeFilter = this.nodeList.filter(x=>{
             if(x.IdNode == Id)
@@ -106,8 +124,17 @@ export class ListaEncadeada {
         let nodeAnterior = nodeFilter[0].nodeAnterior;
         let nodeProximo = nodeFilter[0].nodeProximo;
 
-        nodeProximo.nodeAnterior = nodeAnterior;
-        nodeAnterior.nodeProximo = nodeProximo;
+        if(nodeAnterior)
+            nodeReturn = nodeAnterior;
+        else
+            nodeReturn = nodeProximo;
+
+
+        if(nodeProximo)
+            nodeProximo.nodeAnterior = nodeAnterior;
+
+        if(nodeAnterior)
+            nodeAnterior.nodeProximo = nodeProximo;
 
         if(JSON.stringify(nodeFilter[0]) == JSON.stringify(this.nodeAtual)){
 
@@ -116,6 +143,9 @@ export class ListaEncadeada {
         }
 
         this.nodeList.splice(indexOf,1);
+
+
+        return {Id:nodeReturn.IdNode, Obj:nodeReturn.objeto}
     }
 
     GetItensArray(){
