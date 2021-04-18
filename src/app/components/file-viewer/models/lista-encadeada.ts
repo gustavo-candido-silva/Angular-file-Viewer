@@ -37,11 +37,19 @@ export class ListaEncadeada {
     }
 
     GetIdAtual(){
-        return this.nodeAtual.IdNode;
+        try {
+            return this.nodeAtual.IdNode;
+        } catch (error) {
+            return null;
+        }
     }
 
     GetConteudo(){
-        return this.nodeAtual.objeto;
+        try {
+            return this.nodeAtual.objeto;
+        } catch (error) {
+            return null;
+        }
     }
 
     GetProxId(){

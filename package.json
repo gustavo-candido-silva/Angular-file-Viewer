@@ -46,7 +46,7 @@
     "tslint": "~6.1.0",
     "typescript": "~4.0.2"
   },
-  "browser":{
+  "browser": {
     "child_process": false
-    }  
+  }
 }

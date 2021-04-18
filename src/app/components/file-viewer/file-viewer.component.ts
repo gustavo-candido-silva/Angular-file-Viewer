@@ -1,12 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-// You should import the CSS file.
-// import 'viewerjs/dist/viewer.css';
-import Viewer from 'viewerjs';
-
-import { fromPath } from "pdf2pic";
 import { Arquivo } from './models/arquivo';
 import { Button } from './models/button';
+import { ListaEncadeada } from './models/lista-encadeada';
 
 @Component({
   selector: 'app-file-viewer',
@@ -15,15 +11,17 @@ import { Button } from './models/button';
 })
 export class FileViewerComponent implements OnInit {
 
-  @Input() lstArquivos:Arquivo[] = [];
-  @Input() lstBtn:Button[] = [];
+  @Input() lstArquivos:ListaEncadeada;
+  @Input() lstBtn:ListaEncadeada;
+
+  public arq_atual:Arquivo;
   
 
   constructor() { }
 
   ngOnInit(): void {
 
-
+    this.arq_atual = this.lstArquivos.GetConteudoById(0);
 
   }
 

@@ -3,7 +3,7 @@
   style="z-index: 2015;">
 
   <!-- viewer -->
-  <div class="viewer-canvas" data-viewer-action="hide"><img src="images/tibet-6.jpg" alt="Potala Palace 3"
+  <div class="viewer-canvas" data-viewer-action="hide"><img [src]="arq_atual.Source" alt="arq_atual.SourceName"
       class="viewer-move viewer-transition"
       style="height: 746.1px; margin-left: 374.659px; margin-top: 41.45px; position: absolute; width: 419.681px; max-width: none !important; transform: none;">
   </div>
@@ -11,14 +11,15 @@
 
   <!-- footer -->
   <div class="viewer-footer">
-    <div class="viewer-title" id="viewerTitle0">Potala Palace 3 (720 × 1280)</div>
+    <div class="viewer-title" id="viewerTitle0">{{arq_atual.SourceName}}</div>
 
     <!-- button list -->
     <div class="viewer-toolbar">
       <ul>
 
-        <li *ngFor="let btn of lstBtn" tabindex="0" [id]="btn.HTML_id" role="button" class="viewer-zoom-in" data-viewer-action="zoom-in"></li>
+        <li *ngFor="let btn of lstBtn" tabindex="0" [id]="btn.HTML_id" role="button" [class]="btn.ButtonClass" [style]="btn.ButtonStyle" (click)="btn.OnClick" data-viewer-action=""></li>
 
+        <!-- 
         <li tabindex="0" role="button" class="viewer-zoom-in" data-viewer-action="zoom-in"></li>
         <li tabindex="0" role="button" class="viewer-zoom-out" data-viewer-action="zoom-out"></li>
         <li tabindex="0" role="button" class="viewer-one-to-one" data-viewer-action="one-to-one"></li>
@@ -30,12 +31,20 @@
         <li tabindex="0" role="button" class="viewer-rotate-right" data-viewer-action="rotate-right"></li>
         <li tabindex="0" role="button" class="viewer-flip-horizontal" data-viewer-action="flip-horizontal"></li>
         <li tabindex="0" role="button" class="viewer-flip-vertical" data-viewer-action="flip-vertical"></li>
+        -->
       </ul>
     </div>
 
     <!-- file list -->
     <div class="viewer-navbar">
       <ul class="viewer-list viewer-transition" role="navigation" style="width: 279px; transform: translateX(414.5px);">
+
+        <li *ngFor="let arq of lstArquivos, i = index" data-index="i" data-viewer-action="view" role="button" tabindex="i">
+          <img [src]="arq.Source" alt="arq.SourceName" data-original-url="arq.Source" data-filled="true" style="width: 50px; height: 50px; transform: translateX(-10px);">
+        </li>
+
+
+        <!--
         <li data-index="0" data-viewer-action="view" role="button" tabindex="0" class=""><img
             src="https://fengyuanchen.github.io/viewerjs/images/thumbnails/tibet-1.jpg" alt="Cuo Na Lake"
             data-original-url="images/tibet-1.jpg" data-filled="true"
@@ -72,6 +81,7 @@
             src="https://fengyuanchen.github.io/viewerjs/images/thumbnails/tibet-9.jpg" alt="Namtso 2"
             data-original-url="images/tibet-9.jpg" data-filled="true"
             style="width: 50px; height: 50px; transform: translateX(-10px);"></li>
+        -->
       </ul>
     </div>
 
